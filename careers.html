@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | Math Matters NYC</title>
+  <meta name="description" content="Join the Math Matters NYC team! We're hiring tutors for SAT, SHSAT, NYS Regents, and K-12 programs in Queens.">
+  <meta property="og:title" content="Careers | Math Matters NYC">
+  <meta property="og:description" content="Apply to become a tutor at Math Matters NYC. Make a difference in students' lives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="header__logo">
+        <img src="images/math-matters-nyc-logo-img.png" alt="Math Matters NYC Logo">
+        <span class="header__logo-text">
+          <span>Math Matters</span>
+          <span>Tutoring Center</span>
+        </span>
+      </a>
+      <nav>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__list" id="navList">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li class="nav__dropdown">
+            <a href="services.html" class="nav__link">Our Programs</a>
+            <ul class="nav__dropdown-menu">
+              <li><a href="services.html#sat">SAT Prep</a></li>
+              <li><a href="services.html#shsat">SHSAT Prep</a></li>
+              <li><a href="services.html#regents">NYS Regents</a></li>
+              <li><a href="services.html#k12">K-12 Help</a></li>
+            </ul>
+          </li>
+          <li><a href="careers.html" class="nav__link nav__link--active">Careers</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+          <li><a href="tel:3476391745" class="nav__cta">Call: 347-639-1745</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero hero--page">
+    <div class="container">
+      <h1 class="hero__title">Join <span>Our Team</span></h1>
+      <p class="hero__subtitle">Make a difference in students' lives. Become a tutor at Math Matters.</p>
+    </div>
+  </section>
+
+  <!-- ========== WHY WORK WITH US ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-in">
+        <h2>Why Tutor With Us?</h2>
+        <p>Join a team that's passionate about helping students succeed</p>
+      </div>
+
+      <div class="card-grid" style="max-width: 900px; margin: 0 auto;">
+        <div class="card fade-in">
+          <div class="card__icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="card__title">Flexible Hours</h3>
+          <p class="card__text">Work on a schedule that fits your life. We offer after-school, evening, and weekend sessions.</p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card__icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3 class="card__title">Community Impact</h3>
+          <p class="card__text">Help students in your community achieve their academic goals and build a brighter future.</p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card__icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h3 class="card__title">Grow Your Skills</h3>
+          <p class="card__text">Develop your teaching abilities and gain valuable experience in education and mentorship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== APPLICATION FORM ========== -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="section__header fade-in">
+        <h2>Apply Now</h2>
+        <p>Fill out the form below and we'll be in touch</p>
+      </div>
+
+      <div class="form-section form-section--full fade-in">
+        <div class="form-card">
+          <h3>Tutor Application</h3>
+          <p>Tell us about yourself and what subjects you'd like to tutor.</p>
+
+          <form id="careerForm" action="https://formsubmit.co/mahi@mathmattersnyc.com" method="POST" enctype="multipart/form-data">
+            <!-- FormSubmit.co hidden fields -->
+            <input type="hidden" name="_subject" value="New Tutor Application - Math Matters">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_next" value="https://mathmattersnyc.com/thank-you.html">
+            <input type="text" name="_honey" style="display:none">
+
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullName" name="Full Name" class="form-input" placeholder="Your full name" required>
+              <div class="form-error">Please enter your full name.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="Email" class="form-input" placeholder="your@email.com" required>
+              <div class="form-error">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="Phone" class="form-input" placeholder="(555) 123-4567" required>
+              <div class="form-error">Please enter your phone number.</div>
+            </div>
+
+            <div class="form-group">
+              <label>Subjects You Can Tutor <span class="required">*</span></label>
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="subjectSAT" name="Subjects[]" value="SAT Prep">
+                  <label for="subjectSAT">SAT Prep</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="subjectSHSAT" name="Subjects[]" value="SHSAT Prep">
+                  <label for="subjectSHSAT">SHSAT Prep</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="subjectStateTest" name="Subjects[]" value="NYS State Test Prep">
+                  <label for="subjectStateTest">NYS State Test</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="subjectRegents" name="Subjects[]" value="NYS Regents">
+                  <label for="subjectRegents">NYS Regents</label>
+                </div>
+              </div>
+              <div class="checkbox-error">Please select at least one subject.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="education">Education Level <span class="required">*</span></label>
+              <select id="education" name="Education Level" class="form-select" required>
+                <option value="" disabled selected>Select your education level</option>
+                <option value="High School">High School</option>
+                <option value="Some College">Some College</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="PhD">PhD</option>
+              </select>
+              <div class="form-error">Please select your education level.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Why Do You Want to Tutor?</label>
+              <textarea id="message" name="Message" class="form-textarea" placeholder="Tell us a bit about yourself and why you're interested in tutoring..." rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Upload Resume <span class="required">*</span></label>
+              <div class="file-upload" id="fileUpload">
+                <input type="file" id="resume" name="attachment" accept=".pdf,.doc,.docx" required>
+                <div class="file-upload-label">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                  <div class="file-upload-text">
+                    <strong>Click to upload</strong> or drag and drop<br>
+                    <small>PDF, DOC, or DOCX (max 10MB)</small>
+                  </div>
+                </div>
+                <div class="file-name" id="fileName"></div>
+              </div>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary" id="submitBtn">Submit Application</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BANNER ========== -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Have Questions About Joining?</h2>
+      <p>Reach out to us directly. We'd love to hear from you.</p>
+      <a href="mailto:mahi@mathmattersnyc.com" class="btn">Email Us: mahi@mathmattersnyc.com</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <img src="images/math-matters-nyc-logo-img.png" alt="Math Matters NYC">
+            <span>Math Matters</span>
+          </div>
+          <p>Affordable tutoring, invaluable learning. Helping students across Queens achieve academic success since day one.</p>
+          <div class="footer__social">
+            <a href="https://facebook.com/mathmattersnyc" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mathmattersnyc" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Programs</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Programs</h4>
+          <ul class="footer__links">
+            <li><a href="services.html#sat">SAT Prep</a></li>
+            <li><a href="services.html#shsat">SHSAT Prep</a></li>
+            <li><a href="services.html#regents">NYS Regents</a></li>
+            <li><a href="services.html#k12">K-12 Help</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>40-17 82nd Street, 2nd Fl<br>Elmhurst, NY 11373</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span><a href="tel:3476391745">347-639-1745</a></span>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span><a href="mailto:shossain@mathmattersnyc.com">shossain@mathmattersnyc.com</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Math Matters Tutoring Center Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+</body>
+</html>
