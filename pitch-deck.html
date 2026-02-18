@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Matters 2.0 | Vision Proposal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== VARIABLES ========== */
+    :root {
+      --primary: #2F5D9B;
+      --primary-dark: #1F3B63;
+      --accent: #FFD400;
+      --accent-dark: #E6BF00;
+      --dark: #1F3B63;
+      --dark-light: #2A4A7A;
+      --text: #2D3748;
+      --text-light: #6B7C93;
+      --light-bg: #F5F7FA;
+      --light-blue: #CFE0F3;
+      --white: #ffffff;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --shadow: 0 2px 12px rgba(31, 59, 99, 0.08);
+      --shadow-hover: 0 4px 20px rgba(31, 59, 99, 0.12);
+      --radius: 8px;
+    }
+
+    /* ========== RESET ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: #E8EDF3;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* ========== SLIDE CONTAINER ========== */
+    .deck {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* ========== SLIDE ========== */
+    .slide {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(31, 59, 99, 0.10);
+      padding: 60px 56px;
+      position: relative;
+      overflow: hidden;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide--dark {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .slide--accent {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .slide--light {
+      background: var(--light-bg);
+    }
+
+    /* ========== SLIDE NUMBER ========== */
+    .slide__number {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .slide--dark .slide__number,
+    .slide--accent .slide__number {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ========== TITLE SLIDE ========== */
+    .slide--title {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      min-height: 600px;
+    }
+
+    .slide--title h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .slide--title h1 span {
+      color: var(--accent);
+    }
+
+    .slide--title .slide__tagline {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .slide--title .slide__sub {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.55);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .slide--title .logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 32px;
+    }
+
+    /* ========== SLIDE HEADINGS ========== */
+    .slide h2 {
+      font-size: 1.75rem;
+      color: var(--dark);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .slide h2 .highlight {
+      color: var(--accent);
+    }
+
+    .slide--dark h2 .highlight,
+    .slide--accent h2 .highlight {
+      color: var(--accent);
+    }
+
+    .slide h3 {
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    /* Dark/accent heading overrides - must come AFTER .slide h2/h3 */
+    .slide--dark h1,
+    .slide--dark h2,
+    .slide--dark h3,
+    .slide--dark h4 {
+      color: var(--white);
+    }
+
+    .slide--accent h1,
+    .slide--accent h2,
+    .slide--accent h3,
+    .slide--accent h4 {
+      color: var(--white);
+    }
+
+    /* ========== UNDERLINE ACCENT ========== */
+    .underline {
+      display: inline-block;
+      position: relative;
+    }
+
+    .underline::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 50px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ========== CONTENT LISTS ========== */
+    .slide__list {
+      margin: 16px 0;
+    }
+
+    .slide__list li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .slide__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .slide--dark .slide__list li::before,
+    .slide--accent .slide__list li::before {
+      background: var(--accent);
+    }
+
+    /* Numbered list */
+    .slide__list--numbered {
+      counter-reset: step;
+    }
+
+    .slide__list--numbered li {
+      padding-left: 36px;
+    }
+
+    .slide__list--numbered li::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      color: var(--dark);
+      border-radius: 50%;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 8px;
+    }
+
+    /* ========== TWO COLUMN LAYOUT ========== */
+    .slide__columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 8px;
+    }
+
+    .slide__col h3 {
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .slide__col--old h3 {
+      color: var(--text-light);
+    }
+
+    .slide__col--new h3 {
+      color: var(--primary);
+    }
+
+    .slide--dark .slide__col--new h3 {
+      color: var(--accent);
+    }
+
+    .slide--dark .slide__col--old h3 {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ========== CALLOUT BOX ========== */
+    .callout {
+      background: rgba(47, 93, 155, 0.08);
+      border-left: 4px solid var(--primary);
+      padding: 20px 24px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 20px 0;
+      font-size: 1rem;
+    }
+
+    .slide--dark .callout {
+      background: rgba(255, 255, 255, 0.08);
+      border-left-color: var(--accent);
+    }
+
+    .slide--accent .callout {
+      background: rgba(255, 255, 255, 0.12);
+      border-left-color: var(--accent);
+    }
+
+    /* ========== QUOTE / STATEMENT ========== */
+    .statement {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      font-weight: 400;
+      max-width: 720px;
+    }
+
+    .statement strong {
+      color: var(--primary);
+    }
+
+    .slide--dark .statement strong,
+    .slide--accent .statement strong {
+      color: var(--accent);
+    }
+
+    /* ========== PILL BADGE ========== */
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(47, 93, 155, 0.1);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.8rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .slide--dark .badge {
+      background: rgba(255, 212, 0, 0.15);
+      color: var(--accent);
+    }
+
+    .slide--accent .badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
+    }
+
+    /* ========== EMPHASIS TEXT ========== */
+    .emphasis {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 16px;
+      color: var(--primary);
+    }
+
+    .slide--dark .emphasis,
+    .slide--accent .emphasis {
+      color: var(--accent);
+    }
+
+    /* ========== ORG CHART IMAGE ========== */
+    .slide__image {
+      margin: 20px auto 0;
+      max-width: 100%;
+      border-radius: var(--radius);
+    }
+
+    .slide__image img {
+      width: 100%;
+      border-radius: var(--radius);
+    }
+
+    /* ========== THREE COLUMN GRID ========== */
+    .slide__grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .grid-card {
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+    }
+
+    .slide--dark .grid-card {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .slide--accent .grid-card {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .grid-card h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .slide--dark .grid-card h4 {
+      color: var(--accent);
+    }
+
+    .slide--accent .grid-card h4 {
+      color: var(--accent);
+    }
+
+    .grid-card li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+      font-size: 0.9rem;
+    }
+
+    .grid-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* ========== TWO COLUMN GRID ========== */
+    .slide__grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    /* ========== ARROW FLOW (Steps) ========== */
+    .step-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--light-bg);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .slide--dark .step-item {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .step-item .step-num {
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      color: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* ========== FINAL SLIDE ========== */
+    .slide--final {
+      text-align: center;
+      min-height: 500px;
+    }
+
+    .slide--final h2 {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .slide--final .slide__list {
+      display: inline-block;
+      text-align: left;
+    }
+
+    .slide--final .slide__list li {
+      font-size: 1.15rem;
+      padding: 8px 0 8px 32px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .deck { padding: 20px 12px; gap: 24px; }
+      .slide { padding: 40px 28px; min-height: 400px; }
+      .slide--title h1 { font-size: 2.5rem; }
+      .slide--title .slide__tagline { font-size: 1.2rem; }
+      .slide h2 { font-size: 1.5rem; }
+      .slide__columns { grid-template-columns: 1fr; gap: 24px; }
+      .slide__grid-3 { grid-template-columns: 1fr; }
+      .slide__grid-2 { grid-template-columns: 1fr; }
+      .step-flow { flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .slide { padding: 32px 20px; min-height: 360px; }
+      .slide--title h1 { font-size: 2rem; }
+      .slide h2 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ==================== SLIDE 1 ==================== -->
+  <div class="slide slide--title slide--dark">
+    <span class="slide__number">01 / 27</span>
+    <img src="assets/math-matters-nyc-logo-img.png" alt="Math Matters NYC" class="logo">
+    <h1>Math Matters <span>2.0</span></h1>
+    <p class="slide__tagline">Education Built for the Modern Age</p>
+    <p class="slide__sub">Vision Proposal for the Future of Math Matters</p>
+  </div>
+
+  <!-- ==================== SLIDE 2 ==================== -->
+  <div class="slide">
+    <span class="slide__number">02 / 27</span>
+    <h2 class="underline">Where We Are Now</h2>
+    <p class="badge">Current Model</p>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>Business Model Today</h3>
+        <ul class="slide__list">
+          <li>Homework help</li>
+          <li>Test prep</li>
+          <li>Whiteboard + worksheets</li>
+          <li>Tutor-dependent quality</li>
+          <li>Minimal data tracking</li>
+          <li>Limited parent reporting</li>
+          <li>Mostly manual systems</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3>Reality</h3>
+        <div class="callout">
+          <ul class="slide__list">
+            <li>Quality depends on individual tutor</li>
+            <li>Hard to measure student improvement</li>
+            <li>Hard to scale</li>
+            <li>Hard to differentiate from competitors</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 3 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">03 / 27</span>
+    <h2>The Problem in <span class="highlight">2026</span></h2>
+    <p style="font-size: 1.1rem; margin-bottom: 16px; opacity: 0.85;">We are competing against:</p>
+    <ul class="slide__list">
+      <li>Online SAT platforms</li>
+      <li>AI tutoring tools</li>
+      <li>Khan Academy</li>
+      <li>Private tutors</li>
+      <li>Large corporate test prep companies</li>
+    </ul>
+    <div class="callout" style="margin-top: 24px;">
+      <p style="margin: 0; font-weight: 600;">If we remain traditional, we fall behind.<br>We must evolve.</p>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 4 ==================== -->
+  <div class="slide">
+    <span class="slide__number">04 / 27</span>
+    <h2 class="underline">Our New Direction</h2>
+    <p class="emphasis" style="margin-top: 0; margin-bottom: 24px;">From Tutoring Center &rarr; Academic Performance Center</p>
+    <div class="slide__columns">
+      <div class="slide__col slide__col--old">
+        <h3>Old Model</h3>
+        <ul class="slide__list">
+          <li>Homework help</li>
+          <li>Topic teaching</li>
+          <li>Paper worksheets</li>
+          <li>Informal systems</li>
+        </ul>
+      </div>
+      <div class="slide__col slide__col--new">
+        <h3>New Model</h3>
+        <ul class="slide__list">
+          <li>Data-driven academic performance</li>
+          <li>Tech-enabled instruction</li>
+          <li>Standardized curriculum</li>
+          <li>Transparent parent reporting</li>
+          <li>Structured growth system</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 5 ==================== -->
+  <div class="slide slide--accent">
+    <span class="slide__number">05 / 27</span>
+    <p class="badge">Positioning</p>
+    <h2 style="font-size: 1.5rem; margin-bottom: 32px;">Our Positioning Statement</h2>
+    <p class="statement"><strong>Math Matters</strong> is a modern academic performance center that combines elite curriculum, digital tools, and measurable outcomes to prepare students for competitive exams and long-term success.</p>
+  </div>
+
+  <!-- ==================== SLIDE 6 ==================== -->
+  <div class="slide">
+    <span class="slide__number">06 / 27</span>
+    <h2 class="underline">What Makes Us Competitive in <span class="highlight">2026</span></h2>
+    <p class="badge">Human + Technology Hybrid Model</p>
+    <div class="callout">
+      <p style="margin: 0; font-weight: 600;">We do not compete with AI. We leverage it.</p>
+    </div>
+    <h3 style="margin-top: 20px;">Examples:</h3>
+    <div class="slide__grid-3">
+      <div class="grid-card">
+        <ul>
+          <li>AI-assisted question banks</li>
+          <li>Instant analytics after mock exams</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Parent performance dashboards</li>
+          <li>Digital homework tracking</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Recorded lesson libraries</li>
+          <li>Human mentorship + smart systems</li>
+        </ul>
+      </div>
+    </div>
+    <p class="emphasis">We combine human mentorship with smart systems.</p>
+  </div>
+
+  <!-- ==================== SLIDE 7 ==================== -->
+  <div class="slide">
+    <span class="slide__number">07 / 27</span>
+    <h2 class="underline">Organizational Upgrade</h2>
+    <div class="slide__image">
+      <img src="assets/Org_Chart.png" alt="Math Matters Organizational Chart">
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 8 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">08 / 27</span>
+    <h2>Leadership <span class="highlight">Structure</span></h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3 style="color: var(--accent);">Owners</h3>
+        <ul class="slide__list">
+          <li>Mahi</li>
+          <li>Mr. Syed Hossain</li>
+        </ul>
+        <p style="opacity: 0.7; font-size: 0.95rem; margin-top: 8px;">Oversee management and business health</p>
+      </div>
+      <div class="slide__col">
+        <h3 style="color: var(--accent);">Full-Time Center Manager (Operator)</h3>
+        <ul class="slide__list">
+          <li>Scheduling</li>
+          <li>Student check-in</li>
+          <li>Parent communication</li>
+          <li>Payment tracking</li>
+          <li>Tutor accountability</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 9 ==================== -->
+  <div class="slide slide--accent">
+    <span class="slide__number">09 / 27</span>
+    <p class="badge">New Critical Role</p>
+    <h2>Director of Curriculum &amp; Data</h2>
+    <p class="statement" style="margin-bottom: 24px;">This becomes the <strong>brain of the operation</strong>.</p>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3 style="color: var(--accent);">Responsibilities</h3>
+        <ul class="slide__list">
+          <li>Standardize all lesson plans</li>
+          <li>Build internal content bank</li>
+          <li>Create mock exams</li>
+          <li>Track student data</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3 style="color: var(--accent);">&nbsp;</h3>
+        <ul class="slide__list">
+          <li>Analyze score improvements</li>
+          <li>Report weekly performance metrics</li>
+        </ul>
+        <div class="callout" style="margin-top: 20px;">
+          <p style="margin: 0; font-weight: 600;">Without this role, we cannot modernize.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 10 ==================== -->
+  <div class="slide">
+    <span class="slide__number">10 / 27</span>
+    <h2 class="underline">Academic Vertical Structure</h2>
+    <p style="color: var(--text-light); margin-bottom: 20px;">Instead of just "Tutors"</p>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>Each Program Has:</h3>
+        <ul class="slide__list">
+          <li>1 Lead Instructor</li>
+          <li>Supporting Tutors</li>
+          <li>Standardized lesson framework</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3>Programs:</h3>
+        <ul class="slide__list">
+          <li>SAT</li>
+          <li>SHSAT</li>
+          <li>Regents</li>
+          <li>3&ndash;12 NYS</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top: 24px;">
+      <p style="margin: 0; font-weight: 600;">No freelance-style chaos. Everything follows a playbook.</p>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 11 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">11 / 27</span>
+    <h2>Core Digital <span class="highlight">Upgrade</span></h2>
+    <p style="opacity: 0.85; margin-bottom: 20px;">We build a simple but powerful system.</p>
+    <h3 style="color: var(--accent); margin-bottom: 16px;">A. Central Student Database</h3>
+    <p style="opacity: 0.7; margin-bottom: 12px;">Track:</p>
+    <div class="slide__grid-3">
+      <div class="grid-card">
+        <ul>
+          <li>Diagnostic score</li>
+          <li>Weak areas</li>
+          <li>Homework completion</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Attendance</li>
+          <li>Mock scores</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Target score</li>
+          <li>Improvement %</li>
+        </ul>
+      </div>
+    </div>
+    <p class="emphasis">Parents love measurable results.</p>
+  </div>
+
+  <!-- ==================== SLIDE 12 ==================== -->
+  <div class="slide">
+    <span class="slide__number">12 / 27</span>
+    <p class="badge">Major Competitive Edge</p>
+    <h2 class="underline">Parent Dashboard</h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>Monthly Report Includes:</h3>
+        <ul class="slide__list">
+          <li>Score improvement chart</li>
+          <li>Attendance record</li>
+          <li>Strength/weakness breakdown</li>
+          <li>Tutor feedback</li>
+          <li>Next month's action plan</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <div class="callout">
+          <p style="margin: 0;"><strong>No small tutoring center in Queens does this professionally.</strong></p>
+          <p style="margin: 8px 0 0; font-weight: 600; color: var(--primary);">This becomes our brand advantage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 13 ==================== -->
+  <div class="slide slide--light">
+    <span class="slide__number">13 / 27</span>
+    <h2 class="underline">Digital Resource Library</h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>We record:</h3>
+        <ul class="slide__list">
+          <li>Core concept lessons</li>
+          <li>Strategy breakdowns</li>
+          <li>Common mistakes</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3>Students can:</h3>
+        <ul class="slide__list">
+          <li>Rewatch lessons</li>
+          <li>Catch up if absent</li>
+          <li>Study independently</li>
+        </ul>
+      </div>
+    </div>
+    <p class="emphasis">This creates scalable intellectual property.</p>
+  </div>
+
+  <!-- ==================== SLIDE 14 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">14 / 27</span>
+    <p class="badge">Academic Strategy</p>
+    <h2>Score Engineering <span class="highlight">System</span></h2>
+    <p style="opacity: 0.85; margin-bottom: 20px;">We move from "teaching topics" to engineering improvement.</p>
+    <div class="step-flow">
+      <div class="step-item"><span class="step-num">1</span> Diagnostic</div>
+      <div class="step-item"><span class="step-num">2</span> Weakness mapping</div>
+      <div class="step-item"><span class="step-num">3</span> Targeted drills</div>
+      <div class="step-item"><span class="step-num">4</span> Timed sections</div>
+      <div class="step-item"><span class="step-num">5</span> Full-length mocks</div>
+      <div class="step-item"><span class="step-num">6</span> Error analysis</div>
+      <div class="step-item"><span class="step-num">7</span> Score recalibration</div>
+    </div>
+    <p class="emphasis">Everything is documented.</p>
+  </div>
+
+  <!-- ==================== SLIDE 15 ==================== -->
+  <div class="slide">
+    <span class="slide__number">15 / 27</span>
+    <h2 class="underline">Service Model Refinement</h2>
+    <div class="slide__grid-3">
+      <div class="grid-card">
+        <h4>Tier 1 &ndash; Core Revenue</h4>
+        <ul>
+          <li>SAT</li>
+          <li>SHSAT</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <h4>Tier 2 &ndash; Stable Cash Flow</h4>
+        <ul>
+          <li>Regents</li>
+          <li>3&ndash;8 NYS Prep</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <h4>Tier 3 &ndash; Retention</h4>
+        <ul>
+          <li>Academic Enrichment</li>
+          <li>Study Skills</li>
+          <li>Homework Lab</li>
+        </ul>
+      </div>
+    </div>
+    <p class="emphasis">Clear structure. Clear focus.</p>
+  </div>
+
+  <!-- ==================== SLIDE 16 ==================== -->
+  <div class="slide slide--light">
+    <span class="slide__number">16 / 27</span>
+    <p class="badge">Affordable + Realistic</p>
+    <h2 class="underline">Technology Stack</h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>Immediate</h3>
+        <ul class="slide__list">
+          <li>Google Workspace</li>
+          <li>Google Sheets tracker</li>
+          <li>Canva reporting</li>
+          <li>Square payments</li>
+          <li>QR check-in</li>
+          <li>Automated email follow-ups</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3>Later</h3>
+        <ul class="slide__list">
+          <li>Custom dashboard</li>
+          <li>LMS integration (or development)</li>
+          <li>Student portal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 17 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">17 / 27</span>
+    <h2>Recruiting &amp; Training <span class="highlight">Upgrade</span></h2>
+    <p style="opacity: 0.85; margin-bottom: 16px;">Every Tutor Must:</p>
+    <ul class="slide__list">
+      <li>Take internal diagnostic exam</li>
+      <li>Demonstrate mastery</li>
+      <li>Complete mock teaching demo</li>
+      <li>Shadow lead instructor</li>
+      <li>Follow standardized lesson format</li>
+      <li>Submit class recap</li>
+      <li>Use performance tracking system</li>
+    </ul>
+    <p class="emphasis">No improvisation. Everything documented.</p>
+  </div>
+
+  <!-- ==================== SLIDE 18 ==================== -->
+  <div class="slide">
+    <span class="slide__number">18 / 27</span>
+    <h2 class="underline">Financial Discipline</h2>
+    <p style="color: var(--text-light); margin-bottom: 20px;">We must track:</p>
+    <div class="slide__grid-3">
+      <div class="grid-card">
+        <ul>
+          <li>Monthly P&amp;L</li>
+          <li>Student acquisition cost</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Tutor payroll efficiency</li>
+          <li>Retention rate</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Average revenue per student</li>
+          <li>Conversion rate (consult &rarr; enrollment)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top: 24px;">
+      <p style="margin: 0; font-weight: 600;">We operate like a startup, not casually.</p>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 19 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">19 / 27</span>
+    <p class="badge">Ideal Student Experience</p>
+    <h2>Daily <span class="highlight">Operations</span></h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3 style="color: var(--accent);">Onboarding</h3>
+        <ul class="slide__list">
+          <li>Diagnostic exam</li>
+          <li>Weakness mapping</li>
+          <li>Improvement roadmap</li>
+          <li>Cohort placement</li>
+          <li>Parent dashboard access</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3 style="color: var(--accent);">Class Structure</h3>
+        <ul class="slide__list">
+          <li>Digital check-in</li>
+          <li>Lesson objective displayed</li>
+          <li>Structured teaching</li>
+          <li>Timed drills</li>
+          <li>Error analysis</li>
+          <li>Digital homework</li>
+          <li>Tutor recap logged</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 20 ==================== -->
+  <div class="slide">
+    <span class="slide__number">20 / 27</span>
+    <h2 class="underline">Parent Experience</h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>Monthly Report</h3>
+        <ul class="slide__list">
+          <li>Score change</li>
+          <li>Attendance</li>
+          <li>Homework %</li>
+          <li>Strengths/weaknesses</li>
+          <li>Action plan</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3>Parent Communication</h3>
+        <ul class="slide__list">
+          <li>Scheduled check-ins</li>
+          <li>Immediate alerts for problems</li>
+          <li>Transparent billing</li>
+        </ul>
+        <div class="callout" style="margin-top: 16px;">
+          <p style="margin: 0; font-weight: 600;">Parents feel informed, not confused.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 21 ==================== -->
+  <div class="slide slide--light">
+    <span class="slide__number">21 / 27</span>
+    <h2 class="underline">Internal Management Operations</h2>
+    <div class="slide__columns">
+      <div class="slide__col">
+        <h3>Weekly Leadership Meeting</h3>
+        <ul class="slide__list">
+          <li>Enrollment numbers</li>
+          <li>Revenue</li>
+          <li>Retention</li>
+          <li>Tutor performance</li>
+          <li>Student improvement data</li>
+        </ul>
+      </div>
+      <div class="slide__col">
+        <h3>Curriculum &amp; Data Team</h3>
+        <ul class="slide__list">
+          <li>Analyze trends</li>
+          <li>Improve materials</li>
+          <li>Refine pacing</li>
+        </ul>
+        <p class="emphasis">Structured decision-making.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 22 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">22 / 27</span>
+    <h2>Marketing <span class="highlight">Upgrade</span></h2>
+    <p style="opacity: 0.7; margin-bottom: 20px;">Flyers help, but it can't be the only thing.</p>
+    <p style="opacity: 0.85; margin-bottom: 12px;">We use:</p>
+    <ul class="slide__list">
+      <li>Before/after score case studies</li>
+      <li>Parent testimonials</li>
+      <li>Educational short-form content</li>
+      <li>Community workshops</li>
+      <li>Free diagnostic events</li>
+      <li>Data-backed proof</li>
+    </ul>
+    <p class="emphasis">We sell results, not classes.</p>
+  </div>
+
+  <!-- ==================== SLIDE 23 ==================== -->
+  <div class="slide slide--accent">
+    <span class="slide__number">23 / 27</span>
+    <h2 style="font-size: 1.5rem; margin-bottom: 24px;">What We Are Trying to Achieve</h2>
+    <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 4px;">Not the biggest center.</p>
+    <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 24px;">Not the cheapest.</p>
+    <p class="statement">We aim to become: <strong>The most structured and technologically organized tutoring center in NYC.</strong></p>
+    <p class="emphasis" style="margin-top: 24px; color: var(--accent);">Modern. Accountable. Measurable.</p>
+  </div>
+
+  <!-- ==================== SLIDE 24 ==================== -->
+  <div class="slide slide--dark">
+    <span class="slide__number">24 / 27</span>
+    <h2>Core Philosophy of Math Matters <span class="highlight">2.0</span></h2>
+    <ul class="slide__list" style="margin-top: 24px;">
+      <li style="font-size: 1.1rem; padding: 10px 0 10px 28px;">Every student has a measurable improvement plan.</li>
+      <li style="font-size: 1.1rem; padding: 10px 0 10px 28px;">Every class has a structured objective.</li>
+      <li style="font-size: 1.1rem; padding: 10px 0 10px 28px;">Every parent receives transparent reporting.</li>
+      <li style="font-size: 1.1rem; padding: 10px 0 10px 28px;">Every tutor follows a standardized system.</li>
+      <li style="font-size: 1.1rem; padding: 10px 0 10px 28px;">Every program leverages technology.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== SLIDE 25 ==================== -->
+  <div class="slide">
+    <span class="slide__number">25 / 27</span>
+    <h2 class="underline">What Success Looks Like</h2>
+    <div class="slide__grid-2" style="margin-top: 24px;">
+      <div class="grid-card">
+        <ul>
+          <li>85&ndash;90% retention rate</li>
+          <li>120&ndash;180+ average SAT improvement</li>
+          <li>SHSAT placement rates publicly tracked</li>
+          <li>70%+ referrals</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <ul>
+          <li>Fully booked cohorts</li>
+          <li>Waiting list for top instructors</li>
+          <li>Strong cash flow</li>
+          <li>Reinvestment in technology</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 26 ==================== -->
+  <div class="slide slide--light">
+    <span class="slide__number">26 / 27</span>
+    <h2 class="underline">Long-Term Vision</h2>
+    <ul class="slide__list" style="margin-top: 24px;">
+      <li style="font-size: 1.05rem; padding: 8px 0 8px 28px;">Hybrid in-person + online programs</li>
+      <li style="font-size: 1.05rem; padding: 8px 0 8px 28px;">Recorded masterclass library</li>
+      <li style="font-size: 1.05rem; padding: 8px 0 8px 28px;">Branded internal curriculum books</li>
+      <li style="font-size: 1.05rem; padding: 8px 0 8px 28px;">Scholarship programs</li>
+      <li style="font-size: 1.05rem; padding: 8px 0 8px 28px;">School partnerships</li>
+      <li style="font-size: 1.05rem; padding: 8px 0 8px 28px;">Scalable second location</li>
+    </ul>
+  </div>
+
+  <!-- ==================== SLIDE 27 ==================== -->
+  <div class="slide slide--final slide--dark">
+    <span class="slide__number">27 / 27</span>
+    <h2 style="font-size: 1.75rem; line-height: 1.6; margin-bottom: 36px;">
+      We are young.<br>
+      We are rebuilding.<br>
+      We don't need massive investment.
+    </h2>
+    <p style="font-size: 1.15rem; opacity: 0.85; margin-bottom: 24px;">We need:</p>
+    <ul class="slide__list" style="display: inline-block; text-align: left;">
+      <li style="font-size: 1.2rem; padding: 10px 0 10px 32px;">Structure</li>
+      <li style="font-size: 1.2rem; padding: 10px 0 10px 32px;">Systems</li>
+      <li style="font-size: 1.2rem; padding: 10px 0 10px 32px;">Standardization</li>
+      <li style="font-size: 1.2rem; padding: 10px 0 10px 32px;">Accountability</li>
+      <li style="font-size: 1.2rem; padding: 10px 0 10px 32px;">Measurable outcomes</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
